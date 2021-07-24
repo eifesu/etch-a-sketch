@@ -21,11 +21,22 @@
         <div class="container">
 
             <button id ="btn-clear" class="btn btn-danger m-2">Clear</button>
-            <button id ="btn-color" class="btn btn-outline-primary m-2">Grayscale</button>
-            <button id ="btn-persistent" class="btn btn-outline-secondary m-2">Persistent</button>
-
+            
         </div>
 
+        <div class="container">
+
+                <input class="form-check-input" type="checkbox" value="" id="rainbow">
+                <label class="form-check-label" for="">
+                  Rainbow
+                </label>
+
+                <br>
+                <input class="form-check-input" type="checkbox" value="" id="persistent">
+                <label class="form-check-label" for=""">
+                  Persists
+                </label>
+        </div>        
         <div class="container small p-2">
             <h6>Grid size = <span>16</span> </h6>
             <input type="range" min="1" max="64" value="16" class="form-range" id="size">        

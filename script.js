@@ -1,9 +1,5 @@
 const grid = document.querySelector('#grid');
 
-// Global variables
-let rgb = true;
-let persistent = false; 
-
 function wipe() {
     // Clears the squares
     const squares = document.querySelectorAll('.square');
@@ -39,19 +35,10 @@ slider.addEventListener('mouseup', (e) => resize(e))
 
 
 // Color button
-const colorbtn = document.querySelector('#btn-color');
-colorbtn.addEventListener('click', () => {
-    rgb = !rgb;
-    colorbtn.textContent = rgb ? 'Grayscale' : 'RGB';
-});
+const rainbow = document.querySelector('#rainbow');
+const persistent = document.querySelector('#persistent');
 
 
-// Persistence button
-const perbtn = document.querySelector('#btn-persistent');
-perbtn.addEventListener('click', () => {
-    persistent = !persistent;
-    perbtn.textContent = persistent ? 'Fading' : 'Persistent';
-})
 
 function drawGrid(s) {
     for (let i = 0; i < s ; i++) {  
@@ -60,12 +47,12 @@ function drawGrid(s) {
         square.addEventListener('mouseover', (e) => {
             const random = () => Math.random() * 255;
             e.target.style.transition = 'none'; 
-            e.target.style.background = rgb ? `rgba(${random()},${random()},${random()},1)` : 'black';
+            e.target.style.background = rainbow.checked ? `rgba(${random()},${random()},${random()},1)` : 'black';
 
             
         });
         square.addEventListener('mouseout', (e) => {
-            if (!persistent) {
+            if (!persistent.checked) {
                 e.target.style.background = 'white'
                 e.target.style.transition = '1s';
             }
