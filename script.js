@@ -1,5 +1,8 @@
 const grid = document.querySelector('#grid');
+
+// Global variables
 let rgb = true;
+let persistent = false; 
 
 function wipe() {
     // Clears the squares
@@ -9,6 +12,7 @@ function wipe() {
     });
 }
 
+// Clearing button
 const clearbtn = document.querySelector('#btn-clear');
 clearbtn.addEventListener('click', wipe);
 
@@ -28,14 +32,26 @@ function resize(e) {
     const span = document.querySelector('span');
     span.textContent = blocks;
 }
+
+// Slider button
 const slider = document.querySelector('#size');
 slider.addEventListener('mouseup', (e) => resize(e))
 
+
+// Color button
 const colorbtn = document.querySelector('#btn-color');
 colorbtn.addEventListener('click', () => {
     rgb = !rgb;
     colorbtn.textContent = rgb ? 'Grayscale' : 'RGB';
 });
+
+
+// Persistence button
+const perbtn = document.querySelector('#btn-persistent');
+perbtn.addEventListener('click', () => {
+    persistent = !persistent;
+    perbtn.textContent = persistent ? 'Fading' : 'Persistent';
+})
 
 function drawGrid(s) {
     for (let i = 0; i < s ; i++) {  
@@ -49,8 +65,10 @@ function drawGrid(s) {
             
         });
         square.addEventListener('mouseout', (e) => {
-            e.target.style.background = 'white'
-            e.target.style.transition = '1s';
+            if (!persistent) {
+                e.target.style.background = 'white'
+                e.target.style.transition = '1s';
+            }
         });
         grid.append(square);
     }
